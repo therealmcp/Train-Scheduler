@@ -29,6 +29,7 @@ $("#add-train").on("click", function(event) {
     firstTrain = $("#firstTrain-id").val().trim();
     frequency = $("#frequency-id").val().trim();
 
+
     dataRef.ref().push({
 
         train: train,
@@ -59,16 +60,22 @@ dataRef.ref().on("child_added", function(childSnapshot) {
     // find the number of minutes until the next train
     timeRemaining = timeDif % frequency;
 
+    var minsTilTrain = frequency = timeRemaining;
+
+    var nextTrain = moment().add(minsTilTrain, "minutes");
+
 
 
     //until the moment time is < than the current time; add interval to the moment time
     
 
-    $("#train-list").append("<tr class='well'><td class='train-name'> " +
+    $("#train-list").append("<tr class='table'><td class='train-name'> " +
     childSnapshot.val().train +
-    // Use <tr> instead of <span>
+
     " </td><td class='train-destination'> " + childSnapshot.val().destination +
     " </td><td class='frequency'> " + childSnapshot.val().frequency + 
+    " </td><td class='next-arrival'> " + nextTrain +
+    " </td><td class='mins-away'> " + minsTilTrain +
     " </td></tr>");
 
 
