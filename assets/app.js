@@ -19,7 +19,7 @@ var dataRef = firebase.database();
 var train = "";
 var destination = "";
 var firstTrain = "";
-var frequency = 0;
+var frequency = "";
 
 $("#add-train").on("click", function(event) {
     event.preventDefault();
@@ -63,10 +63,6 @@ dataRef.ref().on("child_added", function(childSnapshot) {
     var minsTilTrain = frequency = timeRemaining;
 
     var nextTrain = moment().add(minsTilTrain, "minutes");
-
-
-
-    //until the moment time is < than the current time; add interval to the moment time
     
 
     $("#train-list").append("<tr class='table'><td class='train-name'> " +
